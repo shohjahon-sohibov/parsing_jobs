@@ -1,11 +1,14 @@
 const express = require('express')
 const app = express()
 const { PORT } = require('../config')
-const cors = require('cors');
+// const cors = require('cors');
+const bodyParser = require('body-parser')
+
 
 const parseRoutes = require('../routes/parserRoutes')
 
-app.use(cors)
+// app.use(cors)
+const jsonParser = bodyParser.json()
 
 //root route
 app.get('/', (_, res) => {
@@ -13,7 +16,7 @@ app.get('/', (_, res) => {
 });
 
 // this route will fetch jobs from external APIs
-app.use('/api/jobs', parseRoutes);
+app.use('/api/jobs', jsonParser, parseRoutes);
 
 // Use express's default error handling middleware
 app.use((err, req, res, next) => {
