@@ -1,13 +1,12 @@
 const express = require('express')
 const app = express()
 const { PORT } = require('../config')
-// const cors = require('cors');
+const cors = require('cors');
 const bodyParser = require('body-parser')
-
 
 const parseRoutes = require('../routes/parserRoutes')
 
-// app.use(cors)
+app.use(cors)
 const jsonParser = bodyParser.json()
 
 //root route
